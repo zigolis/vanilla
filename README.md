@@ -1,1 +1,1 @@
-# vanilla
+## Experiments with VanillaJS
