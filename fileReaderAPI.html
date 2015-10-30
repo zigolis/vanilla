@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>File Reader API</title>
+</head>
+<body>
+  <input type="file" id="file-reader" multiple>
+
+  <div id="show"></div>
+  <script type="text/javascript">
+    document.getElementById('file-reader').addEventListener('change', function() {
+      var file;
+      var show = document.getElementById('show');
+      show.innerHTML = '';
+
+      for (var x = 0, xlen = this.files.length; x < xlen; x++) {
+        file = this.files[x];
+
+        if (file.type.indexOf('image') != -1) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+            var img = new Image();
+            img.src = e.target.result;
+
+            show.appendChild(img);
+          };
+
+          reader.readAsDataURL(file);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
