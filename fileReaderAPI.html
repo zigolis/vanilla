@@ -3,15 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <title>File Reader API</title>
+  <link rel="stylesheet" href="/vendor/cssgram/source/css/cssgram.min.css">
+  <style>
+    body {
+      text-align: center;
+    }
+
+    h1 {
+      font-family: Helvetica Neue;
+      font-size: 32px;
+      font-weight: 100;
+    }
+
+    figure {
+      border: 3px solid #999;
+      height: 0;
+      margin: 0 auto;
+      min-height: 250px;
+      overflow: hidden;
+      padding: 1px;
+      width: 250px;
+    }
+
+    ul {
+      display: inline-block;
+      overflow: auto;
+      padding: 0;
+    }
+
+    li {
+      float: left;
+      font-family: Helvetica Neue;
+      font-size: 10px;
+      list-style: none;
+      margin-right: 5px;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    a {
+      background: #ccc;
+      color: #666;
+      display: block;
+      height: 50px;
+      line-height: 50px;
+      text-decoration: none;
+      width: 50px;
+    }
+  </style>
 </head>
 <body>
-  <input type="file" id="file-reader" multiple>
+  <h1>File Reader API + CSSGram</h1>
 
-  <div id="show"></div>
+  <div>
+    <input type="file" id="file-reader" multiple>
+  </div>
+
+  <br>
+
+  <figure id="show"></figure>
+
+  <ul>
+    <li><a href="#" class="aden">aden</a></li>
+    <li><a href="#" class="reyes">reyes</a></li>
+    <li><a href="#" class="perpetua">perpetua</a></li>
+    <li><a href="#" class="inkwell">inkwell</a></li>
+    <li><a href="#" class="toaster">toaster</a></li>
+    <li><a href="#" class="walden">walden</a></li>
+    <li><a href="#" class="hudson">hudson</a></li>
+    <li><a href="#" class="gingham">gingham</a></li>
+    <li><a href="#" class="mayfair">mayfair</a></li>
+    <li><a href="#" class="lofi">lofi</a></li>
+    <li><a href="#" class="xpro2">xpro2</a></li>
+    <li><a href="#" class="_1977">_1977</a></li>
+    <li><a href="#" class="brooklyn">brooklyn</a></li>
+  </ul>
+
   <script type="text/javascript">
-    document.getElementById('file-reader').addEventListener('change', function() {
-      var file;
-      var show = document.getElementById('show');
+    var fileReader = document.getElementById('file-reader')
+      , links = document.getElementsByTagName('a')
+      , image = document.getElementById('show')
+      , show = document.getElementById('show')
+      , file;
+
+    fileReader.addEventListener('change', function() {
       show.innerHTML = '';
 
       for (var x = 0, xlen = this.files.length; x < xlen; x++) {
@@ -23,6 +98,7 @@
           reader.onload = function(e) {
             var img = new Image();
             img.src = e.target.result;
+            img.width = 250;
 
             show.appendChild(img);
           };
@@ -30,7 +106,20 @@
           reader.readAsDataURL(file);
         }
       }
+
+      setFilter();
     });
+
+    setFilter = function() {
+      for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener('mouseover', function() {
+          var gramEffect = this.className;
+
+          image.className = '';
+          image.className = gramEffect;
+        });
+      }
+    }
   </script>
 </body>
 </html>
