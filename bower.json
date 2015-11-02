@@ -1,0 +1,26 @@
+{
+  "name": "Vanilla Experiments",
+  "version": "0.1.0",
+  "homepage": "https://github.com/zigolis/vanilla",
+  "authors": [
+    "Gabriel Zigolis <gabriel.zigolis@gmail.com>"
+  ],
+  "description": "Some pure JS experiments",
+  "moduleType": [
+    "es6"
+  ],
+  "keywords": [
+    "javascript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "cssgram": "*"
+  }
+}
