@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>File API</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    h1, p {
+      font-family: Helvetica Neue;
+      font-size: 32px;
+      font-weight: 100;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>File API</h1>
+
+  <div>
+    <input type="file" id="upload" multiple>
+  </div>
+
+  <p id="msg"></p>
+
+  <script type="text/javascript">
+    var upload = document.getElementById('upload')
+      , msg = document.getElementById('msg');
+
+    upload.addEventListener('change', function() {
+      var file = upload.files;
+
+      msg.innerHTML = 'Your file ' + file[0].name + ' has <b>' + file[0].size + ' bytes</b>!';
+      console.log(file);
+    });
+  </script>
+</body>
+</html>
