@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promisse API</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    h1, p {
+      font-family: Helvetica Neue;
+      font-size: 32px;
+      font-weight: 100;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Promisse API</h1>
+
+  <button>Call</button>
+
+  <p id="msg">
+    <b></b>
+    <span></span>
+  </p>
+
+  <script type="text/javascript">
+    var url = 'http://demo2177885.mockable.io/products';
+    var get = function get(url) {
+     /**
+      * Return a promisse
+      */
+      return new Promise(function(resolve, reject) {
+        var req = new XMLHttpRequest();
+
+        /**
+         * XHR call
+         */
+        req.open('GET', url);
+
+        /**
+         * Resolve promisse or
+         * reject with status text
+         */
+        req.onload = function() {
+          if (req.status == 200) {
+            resolve(req.response);
+          }
+          else {
+            reject(Error(req.statusText));
+          }
+        };
+
+        /**
+         * Handle network errors
+         */
+        req.onerror = function() {
+          reject(Error('Network Error'));
+        };
+
+        req.send();
+      });
+    };
+
+    document.querySelector('button').addEventListener('click', function(event) {
+      get(url).then(function(response) {
+        document.querySelector('#msg b').innerHTML = 'Success';
+        console.log(response);
+      }, function(error) {
+        document.querySelector('#msg b').innerHTML = 'Failed';
+        console.error(error);
+      });
+
+      event.preventDefault();
+    });
+  </script>
+</body>
+</html>
